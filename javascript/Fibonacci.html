@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibonacci</title>
+</head>
+
+<body>
+    <form action=""></form>
+    Enter number: <input type="number" id="n">
+    <button type="button" onclick="myFunction()">Submit</button>
+
+</body>
+<script>
+    function myFunction() {
+        let input = document.getElementById("n").value;
+        let F0 = 0;
+        let F1 = 1;
+        let Fn;
+
+        for (let i = 0; i < input; i++) {
+
+            if (i === 0) {
+                console.log(F0);
+            }
+            else if (i === 1) {
+                console.log(F1);
+            }
+            else {
+                Fn = F0 + F1;
+                console.log(Fn);
+
+                F0 = F1;
+                F1 = Fn;
+            }
+        }
+    }
+
+</script>
+
+</html>
