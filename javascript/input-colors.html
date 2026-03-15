@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buttons met JS</title>
+
+<style>
+body {
+    padding: 10px;
+}
+
+.container {
+    background-color: gray;
+    width: 345px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+button {
+    width: 60px;
+    height: 40px;
+    color: white;
+    background-color: green;
+    border: none;
+    cursor: pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container"></div>
+
+<script>
+const container = document.querySelector(".container");
+
+let aantalButtons = 30;
+
+let kleuren = [];
+
+for (let i = 1; i <= 4; i++) {
+    let kleur = prompt("Voer kleur " + i + " in");
+    kleuren.push(kleur);
+}
+
+for (let i = 1; i <= aantalButtons; i++) {
+
+    const button = document.createElement("button");
+    button.textContent = i;
+
+    let clicks = 0;
+
+    button.onclick = function () {
+
+        if (clicks < kleuren.length) {
+            button.style.backgroundColor = kleuren[clicks];
+            clicks++;
+        }
+
+    };
+
+    container.appendChild(button);
+}
+</script>
+
+</body>
+</html>
