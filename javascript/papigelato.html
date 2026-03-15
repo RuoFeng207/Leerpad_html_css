@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Papi Gelato</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+<script>
+    // Data
+    const smaak = {
+        v: { name: "Vanille", price: 1.10 },
+        a: { name: "Aardbei", price: 1.20 }
+    };
+
+    console.log("Welkom bij Papi Gelato");
+    console.log("Welke smaak wilt u?");
+    console.log(`${smaak.v.name} of ${smaak.a.name}`);
+
+    let keuze;
+    let geldig = true;
+
+    while (geldig) {
+        keuze = prompt("Typ 'v' voor Vanille of 'a' voor Aardbei:");
+        if (keuze === 'v' || keuze === 'a') {
+            geldig = false;
+        } else {
+            console.log("Ongeldige keuze! Probeer opnieuw.");
+        }
+    }
+    
+    console.log("--------- BON ---------");
+    console.log(`Smaak: ${smaak[keuze].name}`);
+    console.log(`Prijs: €${smaak[keuze].price.toFixed(2)}`);
+    console.log("-----------------------");
+</script>
