@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piramide</title>
+</head>
+
+<body>
+    <h2>Oplopende piramide</h2>
+    <div id="piramide"></div>
+</body>
+
+</html>
+<script>
+    let vraag = true;
+    let nummer;
+    let output = "";
+    function piramide() {
+        while (vraag) {
+            nummer = Number(prompt("Voer een getal in:")) + 1;
+            if (nummer > 0) {
+                vraag = false;
+            }
+        }
+        for (let i = 0; i < nummer; i++) {
+            for (let j = 0; j <= i; j++) {
+                output += j;
+            }
+            output += "<br>";
+        }
+
+        document.getElementById("piramide").innerHTML = output;
+
+    }
+    piramide();
+
+</script>

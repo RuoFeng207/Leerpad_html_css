@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>som</title>
+</head>
+
+<body>
+
+    <h2>Optellen van de twee arrays zijn</h2>
+    <div id="add"></div>
+
+    <h2>Aftrekken van de twee arrays zijn</h2>
+    <div id="sub"></div>
+
+    <h2>Vermenigvuldigen van de twee arrays zijn</h2>
+    <div id="mul"></div>
+
+    <h2>Delen van de twee arrays zijn</h2>
+    <div id="div"></div>
+
+    <script>
+        let arrayEen = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        let arrayTwee = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20];
+
+        function calculate(arrayEen, arrayTwee, operator) {
+            let output = "";
+
+            for (let i = 0; i < arrayEen.length; i++) {
+
+                let som;
+
+                if (operator === "+") {
+                    som = arrayEen[i] + arrayTwee[i];
+                } else if (operator === "-") {
+                    som = arrayTwee[i] - arrayEen[i];
+                } else if (operator === "*") {
+                    som = arrayEen[i] * arrayTwee[i];
+                }
+                else {
+                    som = arrayTwee[i] / arrayEen[i];
+                }
+                if (operator === "+" || operator === "*") {
+
+                    output += `${arrayEen[i]} ${operator} ${arrayTwee[i]} = ${som} <br>`;
+                }
+                else {
+                    output += `${arrayTwee[i]} ${operator} ${arrayEen[i]} = ${som} <br>`;
+
+                }
+            }
+
+            return output;
+        }
+
+        document.getElementById("add").innerHTML = calculate(arrayEen, arrayTwee, "+");
+        document.getElementById("sub").innerHTML = calculate(arrayEen, arrayTwee, "-");
+        document.getElementById("mul").innerHTML = calculate(arrayEen, arrayTwee, "*");
+        document.getElementById("div").innerHTML = calculate(arrayEen, arrayTwee, "/");
+
+
+    </script>
+
+</body>
+
+</html>

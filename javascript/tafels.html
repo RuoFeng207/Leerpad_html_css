@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tafels</title>
+</head>
+
+<body>
+
+    <h2>De tafel van 2</h2>
+    <div id="tafel2"></div>
+
+    <h2>De tafel van 4</h2>
+    <div id="tafel4"></div>
+
+    <h2>De tafel van 6</h2>
+    <div id="tafel6"></div>
+
+    <h2>De tafel van 8</h2>
+    <div id="tafel8"></div>
+
+    <script>
+
+        let arrayEen = [2, 4, 6, 8];
+        let arrayTwee = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+        function tafels(index, arrayTwee) {
+
+            let output = "";
+
+            for (let i = 0; i < arrayTwee.length; i++) {
+
+                let som = arrayEen[index] * arrayTwee[i];
+
+                output += `${arrayEen[index]} x ${arrayTwee[i]} = ${som} <br>`;
+            }
+
+            return output;
+        }
+
+        document.getElementById("tafel2").innerHTML = tafels(0, arrayTwee);
+        document.getElementById("tafel4").innerHTML = tafels(1, arrayTwee);
+        document.getElementById("tafel6").innerHTML = tafels(2, arrayTwee);
+        document.getElementById("tafel8").innerHTML = tafels(3, arrayTwee);
+
+    </script>
+
+</body>
+
+</html>

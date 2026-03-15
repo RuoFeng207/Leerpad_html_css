@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piramide</title>
+</head>
+
+<body>
+    <h2>Omgekeerde piramide</h2>
+    <div id="reversePiramide"></div>
+
+    <script>
+        let vraag = true;
+        let nummer;
+        let output = "";
+       while (vraag) {
+            nummer = Number(prompt("Voer een getal in:"));
+            if (nummer > 0) {
+                vraag = false;
+            }
+        }
+
+        for (let i = nummer; i >= 0; i--) {
+            for (let j = 0; j <= i; j++) {
+                output += j;
+            }
+            output += "<br>";
+        }
+
+        document.getElementById("reversePiramide").innerHTML = output;
+    </script>
+</body>
+
+</html>
