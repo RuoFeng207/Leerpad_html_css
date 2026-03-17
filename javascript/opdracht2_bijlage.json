@@ -1,0 +1,49 @@
+[{
+   "naam": "Willem",
+   "functie": "Kapitein",
+   "mythologie": "Nederlandse",
+   "verhaal": "De Vliegende Hollander",
+   "status": "Vervloekt"
+},
+{
+   "naam": "Hans",
+   "functie": "Voedsel",
+   "mythologie": "Germaans",
+   "verhaal": "Hans en Grietje",
+   "status": "sterfelijk"
+},
+{
+   "naam": "Ent",
+   "functie": "Beschermer",
+   "mythologie": "middle earth",
+   "verhaal": "Lord of the rings",
+   "status": "Monster"
+},
+{
+   "naam": "Nicolaas",
+   "functie": "Sint",
+   "mythologie": "Nederlandse",
+   "verhaal": "Het verhaal van Sint Nicolaas",
+   "status": "Heilige"
+},
+{
+   "naam": "Zeus",
+   "functie": "Heer van de hemel",
+   "mythologie": "Grieks",
+   "verhaal": "Bijna alle belangrijke Griekse mythe",
+   "status": "God"
+},
+{
+   "naam": "Jouke",
+   "functie": "Dijkstra",
+   "mythologie": "Fries",
+   "verhaal": 29,
+   "status": 82
+},
+{
+   "naam": "Nüwa",
+   "functie": "Schepper van de mensheid",
+   "mythologie": "Chineese",
+   "verhaal": "Het verhaal waarin ze mensen uit gele klei maakt",
+   "status": "Godin"
+}]
