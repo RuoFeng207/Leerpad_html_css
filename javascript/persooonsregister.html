@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Gegevens</h2>
+    <div id="voornaam"></div>
+    <div id="achternaam"></div>
+    <div id="nationaliteit"></div>
+    <div id="leeftijd"></div>
+    <div id="gewicht"></div>
+
+
+</body>
+
+</html>
+
+<script>
+    fetch('opdracht1_bijlage.json')
+        .then(response => {
+            return response.json();
+        })
+
+        .then(data => {
+            document.getElementById("voornaam").innerHTML = `Voornaam: ${data.voornaam}`;
+            document.getElementById("achternaam").innerHTML = `Achternaam: ${data.achternaam}`;
+            document.getElementById("nationaliteit").innerHTML = `Nationaliteit: ${data.nationaliteit}`;
+            document.getElementById("leeftijd").innerHTML = `Leeftijd: ${data.leeftijd}`;
+            document.getElementById("gewicht").innerHTML = `Gewicht: ${data.gewicht}`;
+        });
+</script>
