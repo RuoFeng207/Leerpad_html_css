@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Gegevens</h2>
+    <div class="container"></div>
+</body>
+
+</html>
+
+<script>
+    const container = document.querySelector(".container");
+
+    fetch('opdracht2_bijlage.json')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+
+            const inputveld = document.createElement("input");
+            container.appendChild(inputveld);
+
+            const button = document.createElement("button");
+            button.textContent = "Check";
+            button.id = "check_button";
+            container.appendChild(button);
+
+            function toonData(array) {
+                for (let i = 0; i < array.length; i++) {
+                    for (let key in array[i]) {
+                        const div = document.createElement("div");
+                        div.textContent = `${key}: ${array[i][key]}`;
+                        container.appendChild(div);
+                    }
+                    const hr = document.createElement("hr");
+                    container.appendChild(hr);
+                }
+            }
+
+            toonData(data);
+
+            button.addEventListener("click", function () {
+                const zoekterm = inputveld.value.toLowerCase();
+                container.innerHTML = "";
+                container.appendChild(inputveld);
+                container.appendChild(button);
+
+                const gefilterd = data.filter(obj =>
+                    Object.values(obj).some(value =>
+                        String(value).toLowerCase().includes(zoekterm)
+                    )
+                );
+
+                toonData(gefilterd);
+            });
+        });
+</script>
