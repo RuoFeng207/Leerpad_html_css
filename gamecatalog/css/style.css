@@ -182,3 +182,19 @@ footer {
     background-color: var(--buttons);
     color: var(--button_text);
 }
+.gamelist{
+    max-height: 550px;
+    margin-top: 20px;
+    overflow-y: scroll;
+    padding-right: 10px;
+
+}
+.submit_button{
+    display: block;
+    margin: 20px auto;
+    cursor: pointer;
+}
+
+.checkbox{
+    cursor: pointer;
+}

@@ -20,22 +20,19 @@
             <li><a class="active" href="game-picker.html">Game Picker</a></li>
 
             <li class="navbar_right"><a href="../../">Main</a></li>
-            <li> <a href="shopping_cart.html">Shopping Cart</a></li>
-
         </ul>
     </nav>
     <main class="container">
         <h1>Game picker</h1>
-        <p>Filter:
-            <select name="filter" id="filter">
-                <option value="All">All</option>
-                <option value="gratis">Gratis</option>
-                <option value=">10">Meer dan €10</option>
-                <option value=">20">Meer dan €20</option>
-            </select>
-
-        </p>
+        <label for="filter">Filter:</label>
+        <select name="filter" id="filter">
+            <option value="All">All</option>
+            <option value="gratis">Gratis</option>
+            <option value=">10">Meer dan €10</option>
+            <option value=">20">Meer dan €20</option>
+        </select>
         <div class="gamelist"></div>
+        <button class="submit_button">Bereken prijs</button>
 
     </main>
     <footer>
