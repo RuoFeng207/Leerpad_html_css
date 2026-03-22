@@ -53,7 +53,7 @@ h3 {
 }
 
 
-.keywords {
+button{
     background-color: var(--buttons);
     color: var(--button_text), var(--text_color);
     min-width: 100px;
