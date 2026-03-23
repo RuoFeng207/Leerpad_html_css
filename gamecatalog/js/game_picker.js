@@ -1,14 +1,35 @@
 const gamelist = document.querySelector(".gamelist");
 const filter_price = document.getElementById("filter_price");
 const filter_genre = document.getElementById("filter_genre");
-const button = document.querySelector(".submit_button");
-let storgeGames = [];
+const toCartButton = document.querySelector(".to_shopping_car");
+const filterLabels = document.querySelectorAll('label[for="filter_price"], label[for="filter_genre"]');
 
-function displayGames(gamesWithIndex, checkedIndices = []) {
+const shopping_cart = document.querySelector(".shopping_cart");
+const cart_items = document.querySelector(".cart_items");
+const total_price_div = document.querySelector(".total_price");
+const back_button = document.querySelector(".back_button");
+
+let storgeGames = [];
+let cartGames = [];
+
+function createGameInfo(game) {
+    const textBox = document.createElement("div");
+    textBox.classList.add("games-info");
+
+    for (let key in game) {
+        const div = document.createElement("div");
+        div.textContent = `${key}: ${game[key]}`;
+        textBox.appendChild(div);
+    }
+
+    return textBox;
+}
+
+function displayGames(gamesWithIndex) {
     gamelist.innerHTML = '';
     const form = document.createElement("form");
     gamelist.appendChild(form);
-    let sum = 0;
+
     gamesWithIndex.forEach(({ game, index }) => {
         const info = document.createElement("div");
         info.classList.add("info-block", "item");
@@ -18,30 +39,12 @@ function displayGames(gamesWithIndex, checkedIndices = []) {
         checkbox.classList.add("checkbox");
         checkbox.dataset.index = index;
 
-        if (checkedIndices.includes(index)) {
-            checkbox.checked = true;
-            sum += parseFloat(game.price);
-        }
-
-        const textBox = document.createElement("div");
-        textBox.classList.add("games-info");
-
-        for (let key in game) {
-            const div = document.createElement("div");
-            div.textContent = `${key}: ${game[key]}`;
-            textBox.appendChild(div);
-        }
+        const textBox = createGameInfo(game);
 
         info.appendChild(checkbox);
         info.appendChild(textBox);
         form.appendChild(info);
     });
-
-    const totalprice = document.createElement("div");
-    totalprice.textContent = `Totaalprijs: €${sum.toFixed(2)}`;
-    totalprice.style.fontWeight = "bold";
-    totalprice.style.marginTop = "10px";
-    gamelist.appendChild(totalprice);
 }
 
 fetch('../json/games.json')
@@ -52,68 +55,97 @@ fetch('../json/games.json')
         displayGames(gamesWithIndex);
     });
 
-filter_price.addEventListener("change", () => {
-    const filterValue = filter_price.value;
-    let filteredGames = storgeGames;
+function applyFilters() {
+    const priceValue = filter_price.value;
+    const genreValue = filter_genre.value;
 
-    if (filterValue === "gratis") {
-        filteredGames = storgeGames.filter(game => parseFloat(game.price) === 0);
-    } else if (filterValue === ">10") {
-        filteredGames = storgeGames.filter(game => parseFloat(game.price) > 10);
-    } else if (filterValue === ">20") {
-        filteredGames = storgeGames.filter(game => parseFloat(game.price) > 20);
+    let filteredGames = [];
+
+    for (let i = 0; i < storgeGames.length; i++) {
+        const game = storgeGames[i];
+        let valid = true;
+
+        if (priceValue === "gratis" && parseFloat(game.price) !== 0) valid = false;
+        if (priceValue === ">10" && parseFloat(game.price) <= 10) valid = false;
+        if (priceValue === ">20" && parseFloat(game.price) <= 20) valid = false;
+
+        if (genreValue !== "all" && game.genre.toLowerCase() !== genreValue.toLowerCase()) valid = false;
+
+        if (valid) {
+            filteredGames.push({ game, index: i });
+        }
     }
 
-    const gamesWithIndex = filteredGames.map(game => ({ game, index: storgeGames.indexOf(game) }));
-    displayGames(gamesWithIndex);
+    displayGames(filteredGames);
+}
+
+filter_price.addEventListener("change", applyFilters);
+filter_genre.addEventListener("change", applyFilters);
+
+function renderCart() {
+    cart_items.innerHTML = "";
+    let sum = 0;
+
+    cartGames.forEach((game, index) => {
+        const info = document.createElement("div");
+        info.classList.add("info-block", "item");
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = true;
+
+        checkbox.addEventListener("change", () => {
+            if (!checkbox.checked) {
+                cartGames.splice(index, 1);
+                renderCart();
+            }
+        });
+
+        const textBox = createGameInfo(game);
+
+        sum += parseFloat(game.price);
+
+        info.appendChild(checkbox);
+        info.appendChild(textBox);
+        cart_items.appendChild(info);
+    });
+
+    total_price_div.textContent = `Totaalprijs: €${sum.toFixed(2)}`;
+}
+
+function showCart() {
+    gamelist.style.display = "none";
+    filter_price.style.display = "none";
+    filter_genre.style.display = "none";
+    filterLabels.forEach(label => label.style.display = "none");
+    toCartButton.style.display = "none";
+    shopping_cart.style.display = "block";
+}
+
+function showGamePicker() {
+    shopping_cart.style.display = "none";
+    gamelist.style.display = "block";
+    filter_price.style.display = "inline-block";
+    filter_genre.style.display = "inline-block";
+    filterLabels.forEach(label => label.style.display = "inline-block");
+    toCartButton.style.display = "block";
+}
+
+toCartButton.addEventListener("click", () => {
+    const checkboxes = document.querySelectorAll(".checkbox");
+    cartGames = [];
+
+    checkboxes.forEach(cb => {
+        if (cb.checked) {
+            const index = parseInt(cb.dataset.index);
+            cartGames.push(storgeGames[index]);
+        }
+    });
+
+    renderCart();
+    showCart();
 });
 
-filter_genre.addEventListener("change", () => {
-    const filterValue = filter_genre.value;
-    let filteredGames = storgeGames;
-
-    if (filterValue === "fps") {
-        filteredGames = storgeGames.filter(game => (game.genre) === "FPS");
-    } else if (filterValue === "moba") {
-        filteredGames = storgeGames.filter(game => (game.genre === "MOBA"));
-    } else if (filterValue === "action") {
-        filteredGames = storgeGames.filter(game => (game.genre === "Action"));
-    } else if (filterValue === "rpg") {
-        filteredGames = storgeGames.filter(game => (game.genre === "RPG"));
-    } else if (filterValue === "sim") {
-        filteredGames = storgeGames.filter(game => (game.genre === "Simulation"));
-    } else if (filterValue === "shooter") {
-        filteredGames = storgeGames.filter(game => (game.genre === "Loot-Shooter"));
-    } else if (filterValue === "sport") {
-        filteredGames = storgeGames.filter(game => (game.genre === "Sport"));
-    } else if (filterValue === "sandbox") {
-        filteredGames = storgeGames.filter(game => (game.genre === "Sandbox"));
-    } else if (filterValue === "rougelike") {
-        filteredGames = storgeGames.filter(game => (game.genre === "Rougelike"));
-    } else if (filterValue === "advanture") {
-        filteredGames = storgeGames.filter(game => (game.genre === "Advanture"));
-    }
-
-    const gamesWithIndex = filteredGames.map(game => ({ game, index: storgeGames.indexOf(game) }));
-    displayGames(gamesWithIndex);
+back_button.addEventListener("click", () => {
+    showGamePicker();
 });
-
-// button.addEventListener("click", () => {
-//     const selectedIndices = [];
-//     const checkboxes = document.querySelectorAll(".gamelist input[type='checkbox']");
-
-//     let sum = 0;
-//     checkboxes.forEach((checkbox) => {
-//         if (checkbox.checked) {
-//             const index = parseInt(checkbox.dataset.index);
-//             selectedIndices.push(index);
-//             sum += parseFloat(storgeGames[index].price);
-//         }
-//     });
-
-//     const selectedGamesWithIndex = selectedIndices.map(i => ({ game: storgeGames[i], index: i }));
-
-//     displayGames(selectedGamesWithIndex, selectedIndices);
-//     console.log(displayGames);
-//     console.log("Totaalprijs:", sum);
-// });
