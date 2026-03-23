@@ -1,5 +1,6 @@
 const gamelist = document.querySelector(".gamelist");
-const filterSelect = document.getElementById("filter");
+const filter_price = document.getElementById("filter_price");
+const filter_genre = document.getElementById("filter_genre");
 const button = document.querySelector(".submit_button");
 let storgeGames = [];
 
@@ -8,7 +9,7 @@ function displayGames(gamesWithIndex, checkedIndices = []) {
     const form = document.createElement("form");
     gamelist.appendChild(form);
     let sum = 0;
-    gamesWithIndex.forEach(({game, index}) => {
+    gamesWithIndex.forEach(({ game, index }) => {
         const info = document.createElement("div");
         info.classList.add("info-block", "item");
 
@@ -47,12 +48,12 @@ fetch('../json/games.json')
     .then(response => response.json())
     .then(data => {
         storgeGames = data;
-        const gamesWithIndex = storgeGames.map((game, i) => ({game, index: i}));
+        const gamesWithIndex = storgeGames.map((game, i) => ({ game, index: i }));
         displayGames(gamesWithIndex);
     });
 
-filterSelect.addEventListener("change", () => {
-    const filterValue = filterSelect.value;
+filter_price.addEventListener("change", () => {
+    const filterValue = filter_price.value;
     let filteredGames = storgeGames;
 
     if (filterValue === "gratis") {
@@ -63,26 +64,56 @@ filterSelect.addEventListener("change", () => {
         filteredGames = storgeGames.filter(game => parseFloat(game.price) > 20);
     }
 
-    const gamesWithIndex = filteredGames.map(game => ({game, index: storgeGames.indexOf(game)}));
+    const gamesWithIndex = filteredGames.map(game => ({ game, index: storgeGames.indexOf(game) }));
     displayGames(gamesWithIndex);
 });
 
-button.addEventListener("click", () => {
-    const selectedIndices = [];
-    const checkboxes = document.querySelectorAll(".gamelist input[type='checkbox']");
+filter_genre.addEventListener("change", () => {
+    const filterValue = filter_genre.value;
+    let filteredGames = storgeGames;
 
-    let sum = 0;
-    checkboxes.forEach((checkbox) => {
-        if (checkbox.checked) {
-            const index = parseInt(checkbox.dataset.index);
-            selectedIndices.push(index);
-            sum += parseFloat(storgeGames[index].price);
-        }
-    });
+    if (filterValue === "fps") {
+        filteredGames = storgeGames.filter(game => (game.genre) === "FPS");
+    } else if (filterValue === "moba") {
+        filteredGames = storgeGames.filter(game => (game.genre === "MOBA"));
+    } else if (filterValue === "action") {
+        filteredGames = storgeGames.filter(game => (game.genre === "Action"));
+    } else if (filterValue === "rpg") {
+        filteredGames = storgeGames.filter(game => (game.genre === "RPG"));
+    } else if (filterValue === "sim") {
+        filteredGames = storgeGames.filter(game => (game.genre === "Simulation"));
+    } else if (filterValue === "shooter") {
+        filteredGames = storgeGames.filter(game => (game.genre === "Loot-Shooter"));
+    } else if (filterValue === "sport") {
+        filteredGames = storgeGames.filter(game => (game.genre === "Sport"));
+    } else if (filterValue === "sandbox") {
+        filteredGames = storgeGames.filter(game => (game.genre === "Sandbox"));
+    } else if (filterValue === "rougelike") {
+        filteredGames = storgeGames.filter(game => (game.genre === "Rougelike"));
+    } else if (filterValue === "advanture") {
+        filteredGames = storgeGames.filter(game => (game.genre === "Advanture"));
+    }
 
-    const selectedGamesWithIndex = selectedIndices.map(i => ({game: storgeGames[i], index: i}));
-    
-    displayGames(selectedGamesWithIndex, selectedIndices);
-    console.log(displayGames);
-    console.log("Totaalprijs:", sum);
+    const gamesWithIndex = filteredGames.map(game => ({ game, index: storgeGames.indexOf(game) }));
+    displayGames(gamesWithIndex);
 });
+
+// button.addEventListener("click", () => {
+//     const selectedIndices = [];
+//     const checkboxes = document.querySelectorAll(".gamelist input[type='checkbox']");
+
+//     let sum = 0;
+//     checkboxes.forEach((checkbox) => {
+//         if (checkbox.checked) {
+//             const index = parseInt(checkbox.dataset.index);
+//             selectedIndices.push(index);
+//             sum += parseFloat(storgeGames[index].price);
+//         }
+//     });
+
+//     const selectedGamesWithIndex = selectedIndices.map(i => ({ game: storgeGames[i], index: i }));
+
+//     displayGames(selectedGamesWithIndex, selectedIndices);
+//     console.log(displayGames);
+//     console.log("Totaalprijs:", sum);
+// });

@@ -178,7 +178,7 @@ footer {
     flex-direction: column;
     margin-left: 20px;
 }
-#filter{
+.filter{
     background-color: var(--buttons);
     color: var(--button_text);
 }

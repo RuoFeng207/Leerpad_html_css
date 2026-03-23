@@ -24,12 +24,27 @@
     </nav>
     <main class="container">
         <h1>Game picker</h1>
-        <label for="filter">Filter:</label>
-        <select name="filter" id="filter">
-            <option value="All">All</option>
+        <label for="filter">Filter prijs:</label>
+        <select name="filter_price" id = "filter_price" class="filter">
+            <option value="all">All</option>
             <option value="gratis">Gratis</option>
             <option value=">10">Meer dan €10</option>
             <option value=">20">Meer dan €20</option>
+        </select>
+        <label for="filter_genre">Filter genre</label>
+        <select name="filter_genre" id="filter_genre" class="filter">
+            <option value="all">All</option>
+            <option value="fps">FPS</option>
+            <option value="moba">MOBA</option>
+            <option value="action">Action</option>
+            <option value="rpg">RPG</option>
+            <option value="sim">Simulation</option>
+            <option value="shooter"> Looter-shooter</option>
+            <option value="sport">Sport</option>
+            <option value="sandbox">Sandbox</option>
+            <option value="rougelike">Rougelike</option>
+            <option value="advanture">Advanture</option>
+            
         </select>
         <div class="gamelist"></div>
         <button class="submit_button">Bereken prijs</button>
