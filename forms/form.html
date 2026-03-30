@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms</title>
+</head>
+<body>
+    <form action="form.html" class="form">
+        <label>Naam:
+            <input type="text" name="name" id="name" placeholder="Voer naam in"><br>
+        </label>
+        <label>Email:
+            <input type="text" name="email" id="email" placeholder="Voer email in"><br>
+        </label>
+        <input type="submit" value="submit">
+    </form>
+</body>
+</html>
+
+<script>
+document.querySelector(".form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+
+    console.log("Naam:", name);
+    console.log("Email:", email);
+});
+</script>
