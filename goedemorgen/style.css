@@ -1,0 +1,29 @@
+body{
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    flex-direction: column;
+    font-family: "Brush Script MT", cursive;
+    color: white;
+    font-size: 30px;
+}
+
+body.morning {
+    background-image: url('images/morning.png');
+}
+
+body.afternoon {
+    background-image: url('images/afternoon.png');
+}
+
+body.evening {
+    background-image: url('images/evening.png');
+}
+body.night {
+    background-image: url('images/night.png');
+
+}
