@@ -7,7 +7,7 @@
     <title>Forms</title>
 </head>
 <body>
-    <form action="form.html" class="form">
+    <form action="welkom.php" class="form" method="get">
         <label>Naam:
             <input type="text" name="name" id="name" placeholder="Voer naam in"><br>
         </label>
@@ -18,15 +18,3 @@
     </form>
 </body>
 </html>
-
-<script>
-document.querySelector(".form").addEventListener("submit", function(e) {
-    e.preventDefault();
-    
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-
-    console.log("Naam:", name);
-    console.log("Email:", email);
-});
-</script>
