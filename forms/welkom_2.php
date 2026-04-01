@@ -8,7 +8,7 @@
 </head>
 <body>
 <?php
-echo $_POST["name"]."<br>";
+echo htmlspecialchars($_POST["name"], ENT_QUOTES, "UTF-8")."<br>";
 echo $_POST["email"];
 
 ?>
