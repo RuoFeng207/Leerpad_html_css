@@ -11,3 +11,8 @@ body{
     align-items: center;
 
 }
+
+label.required::after {
+  content: " *";
+  color: red;
+}

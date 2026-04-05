@@ -1,20 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forms</title>
 </head>
+
 <body>
     <form action="welkom_2.php" class="form" method="post">
-        <label>Naam:
-            <input type="text" name="name" id="name" placeholder="Voer naam in" required><br>
-        </label>
-        <label>Email:
-            <input type="text" name="email" id="email" placeholder="Voer email in" required><br>
-        </label>
+        <label class="required" for="name">Naam:</label>
+        <input type="text" name="name" id="name" required><br>
+
+        <label class="required" for="email">Email:</label>
+        <input type="email" name="email" id="email" required><br>
         <input type="submit" value="submit">
     </form>
 </body>
+
 </html>
+
+<script>
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+
+    nameInput.addEventListener("invalid", function () {
+        this.setCustomValidity("Name is required");
+    });
+
+    nameInput.addEventListener("input", function () {
+        this.setCustomValidity("");
+    });
+    emailInput.addEventListener("invalid", function () {
+        this.setCustomValidity("Email is required");
+    });
+
+    emailInput.addEventListener("input", function () {
+        this.setCustomValidity("");
+    });
+</script>
