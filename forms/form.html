@@ -2,19 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forms</title>
+    <title>Formulier</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form action="welkom.php" class="form" method="get">
-        <label>Naam:
-            <input type="text" name="name" id="name" placeholder="Voer naam in"><br>
-        </label>
-        <label>Email:
-            <input type="text" name="email" id="email" placeholder="Voer email in"><br>
-        </label>
-        <input type="submit" value="submit">
+
+    <form action="welkom.php" method="post" class="form">
+        <label class="required" for="name">Naam:</label>
+        <input type="text" name="name" id="name" placeholder="Voer naam in" required><br>
+
+        <label class="required" for="email">Email:</label>
+        <input type="email" name="email" id="email" placeholder="Voer email in" required><br>
+
+        <input type="submit" value="Submit">
     </form>
+
+    <script>
+        const nameInput = document.getElementById("name");
+        const emailInput = document.getElementById("email");
+
+        nameInput.addEventListener("invalid", function () {
+            this.setCustomValidity("Naam is verplicht");
+        });
+
+        nameInput.addEventListener("input", function () {
+            this.setCustomValidity("");
+        });
+
+        emailInput.addEventListener("invalid", function () {
+            this.setCustomValidity("Email is verplicht");
+        });
+
+        emailInput.addEventListener("input", function () {
+            this.setCustomValidity("");
+        });
+    </script>
+
 </body>
 </html>
