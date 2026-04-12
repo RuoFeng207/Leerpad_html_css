@@ -8,6 +8,7 @@ body {
     margin: 0;
 }
 
+footer,
 h1 {
     font-family: garamond, cursive;
     color: white;
@@ -23,12 +24,13 @@ a {
     text-decoration: none;
 }
 
+footer,
 nav {
     background-color: #AB2513;
     padding: 5px 10px;
 }
 
-form {
+.content {
     background-color: white;
     padding: 10px 25px;
     width: 100%;
