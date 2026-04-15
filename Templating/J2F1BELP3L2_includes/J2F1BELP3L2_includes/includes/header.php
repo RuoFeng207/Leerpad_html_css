@@ -12,12 +12,18 @@ om te bepalen welke inhoud er ingeladen moet worden in je html
 </head>
 <body>
     <header>
-        <nav>
+        <nav class="navbar">
             <li>
-                <a href="../pages/onderwerp1.php">Server</a>
+                <a href="index.php?page=homepage">Home</a>
             </li>
             <li>
-                <a href="../pages/onderwerp2.php"></a>
+                <a href="index.php?page=onderwerp1">Zeus</a>
+            </li>
+            <li>
+                <a href="index.php?page=onderwerp2">Odin</a>
+            </li>
+            <li>
+                <a href="index.php?page=onderwerp3">Ra</a>
             </li>
         </nav>
     </header>

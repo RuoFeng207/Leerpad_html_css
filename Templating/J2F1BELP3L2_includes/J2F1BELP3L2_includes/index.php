@@ -13,7 +13,7 @@
   <div class="content">
     <!-- laad hier via php de juiste contentpagina in (vanuit de pages map) in. Welke geselecteerd moet worden kun je uit de URL halen (URL_Params).-->
     <?php
-    $allowed_pages = ['onderwerp1', 'onderwerp2', 'onderwerp3'];
+    $allowed_pages = ['onderwerp1', 'onderwerp2', 'onderwerp3', 'homepage'];
     $page = $_GET['page'] ?? 'onderwerp1';
 
     if (in_array($page, $allowed_pages)) {

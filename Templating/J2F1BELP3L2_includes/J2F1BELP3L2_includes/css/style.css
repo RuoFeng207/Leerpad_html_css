@@ -8,6 +8,7 @@ html{
 
 }
 body {
+    font-family: sans-serif;
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
@@ -18,16 +19,37 @@ body {
 }
 
 header{
-
     background-color: #00618B;
+    padding: 5px;
+}
+
+.navbar{
+    display: flex;
+    gap: 10px;
+}
+
+.navbar li{
+    list-style-type: none;
+}
+.navbar a{
+    text-decoration: none;
 }
 
 .content * {
     color: black;
 }
 
+img{
+    width: 60%;
+    max-width: 800px;
+}
+p {
+    margin: 0 20px;
+    text-align: start;
+}
 footer {
     background-color: #E48F01;
     margin-top: auto;
     padding: 5px;
+    margin-top: 20px;
 }
